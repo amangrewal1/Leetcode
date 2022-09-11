@@ -4,7 +4,6 @@ class Solution:
         count = {}
         l = 0 
         r = 0
-        winLen = r - l + 1
         res = 0
         
         while l <= r and r < len(s):
