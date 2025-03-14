@@ -9,9 +9,6 @@ class Solution:
                 d1[tup] = []
             d1[tup].append(s)
 
-        l1 = []
-        for val in d1.values():
-            l1.append(val)
-        
-        return l1
+    
+        return list(d1.values())
             
