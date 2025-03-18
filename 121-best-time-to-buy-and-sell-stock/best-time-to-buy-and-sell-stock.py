@@ -12,9 +12,7 @@ class Solution:
             maxP = max(maxP, prices[r] - prices[l])
             if prices[r] < prices[l] :
                 l = r
-                r += 1
-            else:
-                r += 1
+            r += 1
         
         return maxP
             
