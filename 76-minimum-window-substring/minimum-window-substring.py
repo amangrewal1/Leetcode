@@ -5,47 +5,40 @@ class Solution:
         
         window = {}
         tmap = {}
-        l = 0
-        r = 0
         res = ""
+        l = 0
 
         for char in t:
             if char not in tmap:
                 tmap[char] = 0
             tmap[char] += 1
             window[char] = 0
+        have = 0
+        need = len(t)
         
-        while r < len(s):
-            if s[r] not in t:
-                r += 1
-                continue
-            while l < len(s) and s[l] not in t:
-                l += 1
-            window[s[r]] += 1
-
-
-            equal = True
-
-            for key in tmap:
-                if window[key] < tmap[key]:
-                    equal = False
-                    break
-            
-            if equal == True:
-                sub = s[l:r+1]
-                if res == "" or len(res) > len(sub):
+        for i in range(len(s)):
+            if s[i] in t:
+                window[s[i]] += 1
+                if window[s[i]] <= tmap[s[i]]:
+                    have += 1
+            while have == need:
+                sub = s[l:i+1]
+                if res == "":
                     res = sub
-                window[s[l]] -= 1
-                l += 1
-                window[s[r]] -= 1
-                r -= 1 
+                elif len(res) > len(sub):
+                    res = sub 
+                if s[l] in t:
+                    window[s[l]] -= 1
+                    if window[s[l]] < tmap[s[l]]:
+                        have -= 1
+                l += 1 
 
-            r += 1
-        
-        return res
+        return res     
 
 
 
+            
+    
 
 
 
