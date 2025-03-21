@@ -16,9 +16,10 @@ class Solution:
         reslen = 0
         
         for i in range(len(s)):
-            if s[i] in t:
-                window[s[i]] += 1
-                if window[s[i]] == tmap[s[i]]:
+            c = s[i]
+            if c in t:
+                window[c] += 1
+                if window[c] == tmap[c]:
                     have += 1
             while have == need:
                 sub = s[l:i+1]
