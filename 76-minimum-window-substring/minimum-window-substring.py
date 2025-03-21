@@ -10,7 +10,6 @@ class Solution:
 
         for c in t:
             tmap[c] = 1 + tmap.get(c, 0)
-            window[c] = 0
         have = 0
         need = len(tmap)
         reslen = float("infinity")
