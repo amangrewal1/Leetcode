@@ -10,9 +10,8 @@ class Solution:
 
         for c in t:
             tmap[c] = 1 + tmap.get(c, 0)
-        have = 0
-        need = len(tmap)
-        reslen = float("infinity")
+        have, need = 0, len(tmap)
+        res, reslen = [-1, -1], float("infinity")
         
         for i in range(len(s)):
             c = s[i]
