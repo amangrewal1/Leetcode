@@ -5,8 +5,9 @@ class Solution:
         
         window = {}
         tmap = {}
-        res = ""
+        res = [-1,-1]
         l = 0
+        r = 0
 
         for c in t:
             tmap[c] = 1 + tmap.get(c, 0)
@@ -17,25 +18,24 @@ class Solution:
         
         for i in range(len(s)):
             c = s[i]
-            if c in t:
-                window[c] += 1
-                if window[c] == tmap[c]:
-                    have += 1
+            window[c]  = 1 + window.get(c, 0)
+            if c in t and window[c] == tmap[c]:
+                have += 1
             while have == need:
                 sub = s[l:i+1]
                 if reslen == 0:
-                    res = sub
+                    res = [l,i]
                     reslen = i - l +1
                 elif reslen > (i - l +1):
-                    res = sub
+                    res = [l,i]
                     reslen = i - l +1 
                 if s[l] in t:
                     window[s[l]] -= 1
                     if window[s[l]] < tmap[s[l]]:
                         have -= 1
                 l += 1 
-
-        return res     
+        l,r = res
+        return s[l:r+1]     
 
 
 
