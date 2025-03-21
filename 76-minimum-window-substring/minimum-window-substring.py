@@ -12,13 +12,13 @@ class Solution:
             tmap[c] = 1 + tmap.get(c, 0)
             window[c] = 0
         have = 0
-        need = len(t)
+        need = len(tmap)
         reslen = 0
         
         for i in range(len(s)):
             if s[i] in t:
                 window[s[i]] += 1
-                if window[s[i]] <= tmap[s[i]]:
+                if window[s[i]] == tmap[s[i]]:
                     have += 1
             while have == need:
                 sub = s[l:i+1]
