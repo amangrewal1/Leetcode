@@ -25,10 +25,9 @@ class Solution:
                 if reslen > (i - l +1):
                     res = [l,i]
                     reslen = i - l +1 
-                if s[l] in t:
-                    window[s[l]] -= 1
-                    if window[s[l]] < tmap[s[l]]:
-                        have -= 1
+                window[s[l]] -= 1
+                if s[l] in tmap and window[s[l]] < tmap[s[l]]:
+                    have -= 1
                 l += 1 
         l,r = res
         return s[l:r+1] if reslen != float("infinity") else ""     
