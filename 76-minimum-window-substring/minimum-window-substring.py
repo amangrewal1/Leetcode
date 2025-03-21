@@ -7,14 +7,13 @@ class Solution:
         tmap = {}
         res = [-1,-1]
         l = 0
-        r = 0
 
         for c in t:
             tmap[c] = 1 + tmap.get(c, 0)
             window[c] = 0
         have = 0
         need = len(tmap)
-        reslen = 0
+        reslen = float("infinity")
         
         for i in range(len(s)):
             c = s[i]
@@ -23,10 +22,7 @@ class Solution:
                 have += 1
             while have == need:
                 sub = s[l:i+1]
-                if reslen == 0:
-                    res = [l,i]
-                    reslen = i - l +1
-                elif reslen > (i - l +1):
+                if reslen > (i - l +1):
                     res = [l,i]
                     reslen = i - l +1 
                 if s[l] in t:
@@ -35,7 +31,7 @@ class Solution:
                         have -= 1
                 l += 1 
         l,r = res
-        return s[l:r+1]     
+        return s[l:r+1] if reslen != float("infinity") else ""     
 
 
 
