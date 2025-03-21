@@ -1,58 +1,30 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        window = {}
-        tmap = {}
+        if t == "":
+            return ""
+
+        countT, window = {}, {}
+        for c in t:
+            countT[c] = 1 + countT.get(c, 0)
+
+        have, need = 0, len(countT)
+        res, resLen = [-1, -1], float("infinity")
         l = 0
-        r = 0
-        res = ""
+        for r in range(len(s)):
+            c = s[r]
+            window[c] = 1 + window.get(c, 0)
 
-        for char in t:
-            if char not in tmap:
-                tmap[char] = 0
-            tmap[char] += 1
-            window[char] = 0
-        
-        while r < len(s):
-            if s[r] not in t:
-                r += 1
-                continue
-            while l < len(s) and s[l] not in t:
-                l += 1
-            window[s[r]] += 1
+            if c in countT and window[c] == countT[c]:
+                have += 1
 
-
-            equal = True
-
-            for key in tmap:
-                if window[key] < tmap[key]:
-                    equal = False
-                    break
-            
-            if equal == True:
-                sub = s[l:r+1]
-                if res == "" or len(res) > len(sub):
-                    res = sub
-                window[s[l]] -= 1
-                l += 1
-                window[s[r]] -= 1
-                r -= 1 
-
-            r += 1
-        
-        return res
-
-
-
-
-
-
-       
+            while have == need:
+                if (r - l + 1) < resLen:
+                    res = [l, r]
+                    resLen = r - l + 1
                     
-
-
-
-            
-
-
-
-        
+                window[s[l]] -= 1
+                if s[l] in countT and window[s[l]] < countT[s[l]]:
+                    have -= 1
+                l += 1
+        l, r = res
+        return s[l : r + 1] if resLen != float("infinity") else ""
