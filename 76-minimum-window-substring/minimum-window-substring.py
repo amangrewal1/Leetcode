@@ -3,8 +3,7 @@ class Solution:
         if t == "":
             return ""
         
-        window = {}
-        tmap = {}
+        window, tmap = {}, {}
         res = [-1,-1]
         l = 0
 
@@ -19,7 +18,6 @@ class Solution:
             if c in t and window[c] == tmap[c]:
                 have += 1
             while have == need:
-                sub = s[l:i+1]
                 if reslen > (i - l +1):
                     res = [l,i]
                     reslen = i - l +1 
