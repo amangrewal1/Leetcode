@@ -8,11 +8,9 @@ class Solution:
         res = ""
         l = 0
 
-        for char in t:
-            if char not in tmap:
-                tmap[char] = 0
-            tmap[char] += 1
-            window[char] = 0
+        for c in t:
+            tmap[c] = 1 + tmap.get(c, 0)
+            window[c] = 0
         have = 0
         need = len(t)
         
