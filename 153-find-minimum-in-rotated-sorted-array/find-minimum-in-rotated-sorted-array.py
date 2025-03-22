@@ -8,7 +8,7 @@ class Solution:
             return nums[l]
 
         while l != r:
-            middle = round((r+l)/2)
+            middle = l + (r - l) // 2
             if (nums[r] - nums[middle]) < (nums[middle] - nums[l]):
                 l = middle
             else:
