@@ -5,9 +5,9 @@ class Solution:
         r = len(nums) - 1
 
         while l != r:
-            m = l + (r - l) // 2
+            m = (r + l) // 2
             if nums[m] < nums[r]:
-                r = m
+                r = m 
             else:
                 l = m + 1
         return nums[l]
