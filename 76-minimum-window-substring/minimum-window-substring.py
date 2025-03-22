@@ -27,21 +27,3 @@ class Solution:
                 l += 1 
         l,r = res
         return s[l:r+1] if reslen != float("infinity") else ""     
-
-
-
-            
-    
-
-
-
-       
-                    
-
-
-
-            
-
-
-
-        
