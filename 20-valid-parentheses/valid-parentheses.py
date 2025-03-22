@@ -1,15 +1,17 @@
 class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
-        closeToOpen = { ")" : "(", "]" : "[", "}" : "{" }
+        brackMap = {'}':'{', ']':'[', ')':'('}
 
-        for c in s:
-            if c in closeToOpen:
-                if stack and stack[-1] == closeToOpen[c]:
-                    stack.pop()
-                else:
-                    return False
+        for i in range(len(s)):
+            if s[i] == '(' or s[i] == '[' or s[i] == '{':
+                stack.append(s[i])
+            elif stack and stack[-1] == brackMap[s[i]]:
+                stack.pop()
             else:
-                stack.append(c)
+                return False
+
         
-        return True if not stack else False
+        if len(stack) == 0:
+            return True
+        return False
