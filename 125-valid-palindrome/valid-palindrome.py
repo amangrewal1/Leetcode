@@ -1,24 +1,16 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
+        l = 0
+        r = len(s) - 1
 
-        s = s.replace(" ","")
-        
-        p1 = 0
-        p2 = len(s) - 1
-
-        if s == "":
-            return True
-    
-
-        while (p1 <= p2):
-            while (s[p1].isalnum() != True and p1 < p2):
-                p1 += 1
-            while (s[p2].isalnum() != True and p1 < p2):
-                p2 -= 1
-            if s[p1].lower() == s[p2].lower():
-                p1 += 1
-                p2 -= 1
-            else: 
+        while l < r:
+            while not s[l].isalnum() and l < r:
+                l += 1
+            while not s[r].isalnum() and l < r:
+                r -= 1
+            if s[l].lower() == s[r].lower():
+                l += 1
+                r -= 1
+            else:
                 return False
-        
         return True
