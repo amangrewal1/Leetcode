@@ -10,9 +10,11 @@ class Solution:
 
             if heights[l] < heights[r]:
                 l += 1
-            else:
+            elif heights[l] > heights[r]:
                 r -= 1
-            
+            else:
+                l += 1
+                r -= 1
         return res
 
 
