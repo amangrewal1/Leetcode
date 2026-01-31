@@ -12,16 +12,23 @@ class Solution:
                 curSum = nums[l] + nums[r]
                 if target == curSum: 
                     res.add((nums[i], nums[l], nums[r]))
-                    l += 1
+                    l += 1 
+                    while nums[l] == nums[l-1] and l < r:
+                        l += 1
                     r -= 1
+                    while nums[r] == nums[r+1] and l < r:
+                        r -= 1
                 elif target < curSum:
-                    r -= 1 
+                    r -= 1
+                    while nums[r] == nums[r+1] and l < r:
+                        r -= 1 
                 else:
                     l += 1
+                    while nums[l] == nums[l-1] and l < r:
+                        l += 1
         ans = [list(t) for t in res]
         return ans
 
 
-[-4,-1,-1,0,1,2]
 
 
