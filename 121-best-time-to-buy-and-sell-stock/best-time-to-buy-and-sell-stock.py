@@ -1,18 +1,9 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        res = 0
-        l = 0
-        r = l + 1
+        maxP = 0
+        minBuy = prices[0]
 
-        while l < len(prices) and r < len(prices):
-            
-            if prices[l] > prices[r]:
-                l = r
-                r += 1
-                continue
-            else:
-                res = max(res, prices[r]-prices[l])
-                r += 1
-        return res
-            
-            
+        for sell in prices:
+            maxP = max(maxP, sell - minBuy)
+            minBuy = min(minBuy, sell)
+        return maxP
