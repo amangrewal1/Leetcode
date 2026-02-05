@@ -1,17 +1,16 @@
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        d1 = defaultdict(int)
+        d = {}
         l = 0
         res = 0
 
-
-        for i in range(len(s)):
-            d1[s[i]] += 1
-            diff = sum(d1.values()) - max(d1.values())
-            if (diff <= k):
-                res = max(res, i - l + 1)
-            else:
-                d1[s[l]] -= 1
+        for r in range(len(s)):
+            d[s[r]] = d.get(s[r],0) + 1
+            if (r - l + 1) - max(d.values()) > k:
+                d[s[l]] -= 1
                 l += 1
+            else:
+                res = max(r - l + 1, res)
         
-        return res
+        return res 
+
